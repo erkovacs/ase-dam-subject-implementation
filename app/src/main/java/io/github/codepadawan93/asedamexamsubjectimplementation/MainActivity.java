@@ -18,6 +18,7 @@ import io.github.codepadawan93.asedamexamsubjectimplementation.Model.Article;
 public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Article> articles;
+    private ArrayList<Article> articlesFromJson;
     private int idUpdated;
     boolean isUpdate;
 
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.extract_articles:
                 intent = new Intent(this, ExtractArticleActivity.class);
+                intent.putExtra("articles", articles);
                 break;
             case R.id.report:
                 intent = new Intent(this, ReportActivity.class);
@@ -65,9 +67,18 @@ public class MainActivity extends AppCompatActivity {
         idUpdated = getIntent().getIntExtra("idUpdated", -1);
         isUpdate = idUpdated != -1;
         articles = (ArrayList<Article>) getIntent().getSerializableExtra("articles");
+        articlesFromJson = (ArrayList<Article>) getIntent().getSerializableExtra("articlesFromJson");
+
         if(articles == null){
             articles = new ArrayList<Article>();
         }
+
+        if(articlesFromJson != null){
+            for(Article article : articlesFromJson){
+                articles.add(article);
+            }
+        }
+
 
         Intent intent = getIntent();
         Serializable addedArticle = intent.getSerializableExtra("addedArticle");
