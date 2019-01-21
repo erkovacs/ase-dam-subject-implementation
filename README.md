@@ -9,6 +9,6 @@ Implement the following requirements:
 5. By selecting an article from the list it will allow the user to modify it. The modification is made in the previous activity used for adding an article. (1 point)
 6. The application allows saving the articles found in the collection in a local database. To check if the items were saved is made by displaying them using the journal files (LogCat). (1.5 points)
 7. From the first activity, using the "Report" button, a new activity is opened in which a chart is drawn. The chart displays the number of articles depending on the number of authors, how many articles have the same number of authors. (1.5 points)
-8. Read the file found at the address: http://pdm.ase.ro/examcn/articole. 1 ison.txtlxml)  which contains JSON/XML objects with values according to the Article class. Save the values to the collection previously created in the application. The operation is made by clicking on "Extract articles from JSON/XML" button. (1.5 points)
+8. Read the file found at the address: http://myjson.com/dpeuk  which contains JSON objects with values according to the Article class. Save the values to the collection previously created in the application. The operation is made by clicking on "Extract articles from JSON/XML" button. (1.5 points)
 
 * Within the project, alt strings used in the interface are saved in the resource files ( -1 point, otherwise).
