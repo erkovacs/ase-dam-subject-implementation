@@ -7,18 +7,23 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.zip.Inflater;
 
+import io.github.codepadawan93.asedamexamsubjectimplementation.Database.ArticleDataSource;
 import io.github.codepadawan93.asedamexamsubjectimplementation.Model.Article;
 
 public class MainActivity extends AppCompatActivity {
 
+    private ArticleDataSource dataSource;
     private ArrayList<Article> articles;
     private ArrayList<Article> articlesFromJson;
+    private Button persistButton;
     private int idUpdated;
     boolean isUpdate;
 
@@ -64,6 +69,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        persistButton = findViewById(R.id.persist_btn);
+        dataSource = new ArticleDataSource(this);
+
         idUpdated = getIntent().getIntExtra("idUpdated", -1);
         isUpdate = idUpdated != -1;
         articles = (ArrayList<Article>) getIntent().getSerializableExtra("articles");
@@ -100,5 +108,20 @@ public class MainActivity extends AppCompatActivity {
                 articles.add(trueAddedArticle);
             }
         }
+
+        persistButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                persistArticles();
+            }
+        });
+    }
+
+    private void persistArticles(){
+        dataSource.open();
+        for(Article article : articles){
+            dataSource.addArticle(article);
+        }
+        dataSource.close();
     }
 }

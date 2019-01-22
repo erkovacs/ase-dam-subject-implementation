@@ -39,7 +39,7 @@ public class ArticleListActivity extends AppCompatActivity {
         for(Article article : articles){
             stringArticles.add(article.getTitle());
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, stringArticles);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, stringArticles);
         articleList.setAdapter(adapter);
     }
 
